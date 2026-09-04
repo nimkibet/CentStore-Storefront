@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Fira Code", monospace;
+  
+  /* Synsation Design Tokens */
+  --color-brand-50: #eff6ff;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  
+  --radius-base: 0.75rem;
+  --radius-card: 1rem;
+  --radius-btn: 0.75rem;
+}
+
+:root {
+  --surface-base: #f8fafc;
+  --surface-card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-subtle: #e2e8f0;
+  color-scheme: light;
+}
+
+html, body {
+  font-size: 16.5px;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--surface-base);
+  color: var(--text-main);
+}
+
+/* Ensure all form inputs have crystal clear text contrast */
+input, textarea, select {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #94a3b8 !important;
+  -webkit-text-fill-color: #94a3b8 !important;
+  opacity: 1;
+}
+
+/* Autofill fix so Chrome/Edge/Safari doesn't invert text to white or yellow */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #0f172a !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Dark themed areas (Admin Panel & Newsletter) */
+.bg-slate-950 input,
+.bg-slate-900 input,
+.bg-slate-900 textarea,
+.bg-slate-950 textarea,
+.bg-slate-950 select,
+.bg-slate-900 select {
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
+
+.bg-slate-950 input::placeholder,
+.bg-slate-900 input::placeholder {
+  color: #64748b !important;
+  -webkit-text-fill-color: #64748b !important;
+}
+
+.bg-slate-950 input:-webkit-autofill,
+.bg-slate-900 input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #020617 inset !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}
