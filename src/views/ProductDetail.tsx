@@ -18,7 +18,7 @@ interface Product {
 }
 
 export default function ProductDetail({ addToCart }: { addToCart: (p: any) => void }) {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
 
