@@ -196,6 +196,12 @@ export default function HomeCatalog({
   const [heroRef, heroApi] = useEmblaCarousel({ loop: true, duration: 30 })
   const [currentSlide, setCurrentSlide] = useState(0)
   const [flashRef] = useEmblaCarousel({ loop: false, align: 'start', slidesToScroll: 1 })
+  const [displayLimit, setDisplayLimit] = useState(15) // ADDED DISPLAY LIMIT
+
+  // Reset display limit when category or search changes
+  useEffect(() => {
+    setDisplayLimit(15)
+  }, [selectedCategory, searchQuery])
 
   // Auto scroll Hero banner logic
   const onSelectHero = useCallback(() => {
@@ -486,7 +492,7 @@ export default function HomeCatalog({
         </h2>
         
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {filteredProducts.map((product) => {
+          {filteredProducts.slice(0, displayLimit).map((product) => {
             const isLiked = likedProducts.includes(product.id)
             const isInCart = cart.some(item => item.id === product.id)
             return (
@@ -550,8 +556,19 @@ export default function HomeCatalog({
               </div>
             )
           })}
-        </div>
-      </section>
+          </div>
+          
+          {filteredProducts.length > displayLimit && (
+            <div className="flex justify-center mt-8">
+              <button 
+                onClick={() => setDisplayLimit(prev => prev + 15)}
+                className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-lg shadow-sm transition-colors"
+              >
+                Load More Inventory
+              </button>
+            </div>
+          )}
+        </section>
 
       {/* NEWSLETTER SUBSCRIBE SECTION */}
       <section className="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden flex flex-col md:flex-row justify-between items-center gap-6 shadow-lg">
